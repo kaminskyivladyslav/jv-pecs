@@ -5,6 +5,8 @@ import core.mate.academy.model.Excavator;
 import core.mate.academy.model.Machine;
 import core.mate.academy.model.Truck;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -24,15 +26,17 @@ public class MachineServiceImpl<T extends Machine> implements MachineService<T> 
 
     @Override
     public List<T> getAll(Class<? extends T> type) {
+        List<? extends Machine> machines;
         if (type.equals(Excavator.class)) {
-            return (List<T>) excavatorProducer.get();
+            machines = excavatorProducer.get();
         } else if (type.equals(Truck.class)) {
-            return (List<T>) truckProducer.get();
+            machines = truckProducer.get();
         } else if (type.equals(Bulldozer.class)) {
-            return (List<T>) bulldozerProducer.get();
+            machines = bulldozerProducer.get();
         } else {
-            return List.of();
+            return new ArrayList<>();
         }
+        return (List<T>) new ArrayList<>(machines);
     }
 
     @Override
@@ -43,8 +47,8 @@ public class MachineServiceImpl<T extends Machine> implements MachineService<T> 
     }
 
     @Override
-    public void startWorking(List<? extends T> machines) {
-        for (T machine : machines) {
+    public void startWorking(List<? extends Machine> machines) {
+        for (Machine machine : machines) {
             machine.doWork();
         }
     }

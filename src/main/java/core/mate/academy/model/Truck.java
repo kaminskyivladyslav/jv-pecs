@@ -5,12 +5,22 @@ package core.mate.academy.model;
  * Do not remove no-field constructor
  */
 public class Truck extends Machine {
+    private int circles;
+
     public Truck() {
-        int circles;
+    }
+
+    public int getCircles() {
+        return circles;
+    }
+
+    public void setCircles(int circles) {
+        this.circles = circles;
     }
 
     @Override
     public void doWork() {
         System.out.println("Truck started to work");
     }
+
 }
