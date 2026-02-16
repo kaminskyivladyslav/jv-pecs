@@ -4,9 +4,7 @@ import core.mate.academy.model.Bulldozer;
 import core.mate.academy.model.Excavator;
 import core.mate.academy.model.Machine;
 import core.mate.academy.model.Truck;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -25,6 +23,7 @@ public class MachineServiceImpl<T extends Machine> implements MachineService<T> 
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<T> getAll(Class<? extends T> type) {
         List<? extends Machine> machines;
         if (type.equals(Excavator.class)) {
