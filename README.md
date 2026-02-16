@@ -1,49 +1,52 @@
 # jv-pecs
 
-1. You have the abstract class `Machine` and three sub-classes: `Bulldozer`, `Excavator`, and `Truck`. Feel free to add some type-specific fields to these classes.
-1. Each machine has the ability to start working.
-1. There is a MachineProducer interface created.
-The goal of the implementation of this interface is to create a list of specific machines (`Bulldozer`, `Excavator`, and `Truck`). 
-You should have at least 3 implementations: `BulldozerProducer`, `ExcavatorProducer`, `TruckProducer`;
-Please parameterize your `MachineProducer` and replace `Object` in `get()` with the suitable option.
-    ```java
-    public interface MachineProducer<PARAMETRIZE ME>{ ... }
-    ```
-1. In `MachineProducer` implementations your method `get()` should return the list of specific machines. 
-For example: 
-    ```java
-    List<Bulldozer> get();
-    ```
-    or 
-    ```java
-    List<Truck> get();
-    ```
-    or 
-    ```java
-    List<Excavator> get();
-    ```
+1. У тебе є абстрактний клас `Machine` і три підкласи: `Bulldozer`, `Excavator`, та `Truck`. Можеш додати будь-які специфічні поля до цих класів.
 
-1. There is also a `MachineService` interface created. You need to parameterize it as well and 
-replace `Object` in the method signature with the right option (use PECS):
+2. Кожна машина має можливість почати працювати.
 
-    - the method `getAll(Class type)` produces the list of machines based on the input param.
-    - the method `fill(List<Object> machines, Object value)` fills the machines list with passed value.
-    - the method `startWorking()` should be able to accept a list containing any Machine.
+3. Створено інтерфейс `MachineProducer`.
+Мета реалізації цього інтерфейсу - створити список конкретних машин (`Bulldozer`, `Excavator`, та `Truck`). 
+Ти маєш мати принаймні 3 реалізації: `BulldozerProducer`, `ExcavatorProducer`, `TruckProducer`;
+Будь ласка, параметризуй свій `MachineProducer` і заміни `Object` в `get()` на підходящий варіант.
+```java
+public interface MachineProducer<ПАРАМЕТРИЗУЙ МЕНЕ>{ ... }
+```
 
-When you parameterize interface `MachineService` keep in mind that we want to restrict types that can be used with it.
+4. В реалізаціях `MachineProducer` твій метод `get()` має повертати список конкретних машин. 
+Наприклад: 
+```java
+List<Bulldozer> get();
+```
+    або 
+```java
+List<Truck> get();
+```
+    або 
+```java
+List<Excavator> get();
+```
 
-Not allow:  
+5. Також створено інтерфейс `MachineService`. Тобі потрібно його також параметризувати і 
+замінити `Object` в сигнатурі методу на правильний варіант (використовуй PECS):
+
+    - метод `getAll(Class type)` створює список машин на основі вхідного параметра.
+    - метод `fill(List<Object> machines, Object value)` заповнює список машин переданим значенням.
+    - метод `startWorking()` має приймати список, що містить будь-яку Machine.
+
+Коли параметризуєш інтерфейс `MachineService`, пам'ятай, що ми хочемо обмежити типи, які можна з ним використовувати.
+
+Не дозволяти:  
 ~~`MachineServiceImpl implements MachineService<Dog>`~~  
-Allow:  
+Дозволяти:  
 `MachineServiceImpl implements MachineService<Truck>`  
-``
-1. Use the created class `MachineServiceImpl` implementing MachineService and realize these methods:
-- `getAll(Class type)`- based on the input class type, choose the right MachineProducer implementation and call its `get()` method.
 
-For example: `if (type == Bulldozer.class)` - we should call the `get()` method from the right implementation of MachineProducer (the one that will return `List<Bulldozer>`) and return these machines.
+6. Використай створений клас `MachineServiceImpl`, що реалізує MachineService, і реалізуй ці методи:
+- `getAll(Class type)` - на основі вхідного типу класу обери правильну реалізацію MachineProducer і викликай її метод `get()`.
 
-- `fill(List<Object> machines, Object value)` - update to the passed value (**which can be of any Machine subtype**) all elements in the `machines` list.
+Наприклад: `if (type == Bulldozer.class)` - ми маємо викликати метод `get()` з правильної реалізації MachineProducer (тієї, що поверне `List<Bulldozer>`) і повернути ці машини.
 
-- `startWorking()` - call `doWork` on every Machine in the list.
+- `fill(List<Object> machines, Object value)` - оновити всі елементи в списку `machines` на передане значення (**яке може бути будь-яким підтипом Machine**).
 
-#### [Try to avoid these common mistakes while solving task](./checklist.md)
+- `startWorking()` - викликати `doWork` на кожній Machine в списку.
+
+#### [Намагайся уникати цих поширених помилок під час виконання завдання](./checklist.md)

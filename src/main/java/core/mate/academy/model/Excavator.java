@@ -6,6 +6,7 @@ package core.mate.academy.model;
  */
 public class Excavator extends Machine {
     public Excavator() {
+        int maxHeight;
     }
 
     @Override

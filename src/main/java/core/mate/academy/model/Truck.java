@@ -6,6 +6,7 @@ package core.mate.academy.model;
  */
 public class Truck extends Machine {
     public Truck() {
+        int circles;
     }
 
     @Override

@@ -6,6 +6,7 @@ package core.mate.academy.model;
  */
 public class Bulldozer extends Machine {
     public Bulldozer() {
+        int maxWeight;
     }
 
     @Override
